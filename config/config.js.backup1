@@ -1,0 +1,238 @@
+/* MagicMirror² Config Sample
+ *
+ * By Michael Teeuw https://michaelteeuw.nl
+ * MIT Licensed.
+ *
+ * For more information on how you can configure this file
+ * see https://docs.magicmirror.builders/configuration/introduction.html
+ * and https://docs.magicmirror.builders/modules/configuration.html
+ *
+ * You can use environment variables using a `config.js.template` file instead of `config.js`
+ * which will be converted to `config.js` while starting. For more information
+ * see https://docs.magicmirror.builders/configuration/introduction.html#enviromnent-variables
+ */
+let config = {
+	address : "0.0.0.0",
+	//address: "localhost",	// Address to listen on, can be:
+							// - "localhost", "127.0.0.1", "::1" to listen on loopback interface
+							// - another specific IPv4/6 to listen on a specific interface
+							// - "0.0.0.0", "::" to listen on any interface
+							// Default, when address config is left out or empty, is "localhost"
+	port: 8080,
+	basePath: "/",			// The URL path where MagicMirror² is hosted. If you are using a Reverse proxy
+					  		// you must set the sub path here. basePath must end with a /
+	ipWhitelist: [],
+	//ipWhitelist: ["127.0.0.1", "::ffff:127.0.0.1", "::1"],	// Set [] to allow all IP addresses
+															// or add a specific IPv4 of 192.168.1.5 :
+															// ["127.0.0.1", "::ffff:127.0.0.1", "::1", "::ffff:192.168.1.5"],
+															// or IPv4 range of 192.168.3.0 --> 192.168.3.15 use CIDR format :
+															// ["127.0.0.1", "::ffff:127.0.0.1", "::1", "::ffff:192.168.3.0/28"],
+
+	useHttps: false, 		// Support HTTPS or not, default "false" will use HTTP
+	httpsPrivateKey: "", 	// HTTPS private key path, only require when useHttps is true
+	httpsCertificate: "", 	// HTTPS Certificate path, only require when useHttps is true
+
+	language: "en",
+	locale: "en-US",
+	logLevel: ["INFO", "LOG", "WARN", "ERROR"], // Add "DEBUG" for even more logging
+	timeFormat: 24,
+	units: "metric",
+
+	modules: [
+	/*{
+			module: "updatenotification",
+			position: "top_bar"
+		},*/
+		{
+			module: "alert",
+		},
+	/*	{
+    module: "MMM-Wallpaper",
+    position: "fullscreen_below",
+    config: { 
+      source: "bing",
+      slideInterval: 1800 * 1000 
+    }
+  },*/
+		/*{
+    module: 'MMM-IPT',
+    position: 'bottom_right', 
+    config: {
+        updateInterval: 4 * 60 * 1000, 
+		    latitude: 37.861676,  //defaults to Konya / Meram.
+		    longitude: 32.4641803,
+		    timeZoneString: "Europe/Istanbul", // https://www.php.net/manual/en/timezones.php
+		    method: 13, 
+		    school: 1,
+		    adhanSrc: 'http://www.islamcan.com/audio/adhan/azan1.mp3',
+		    css_class: 'bright medium',
+    }
+}
+		,
+		,{
+			module: 'MMM-Globe',
+			position: 'center',
+			config: {
+					style: 'geoColor',
+					imageSize: 600,
+					ownImagePath:'',
+					updateInterval: 10*60*1000
+	}
+},*/
+		{module:'MMM-HelloWorld',
+			position:'top_left'
+			}
+			/*,
+			{
+		module: 'MMM-ImageSlideshow',
+		position: 'center',
+		config: {
+			imagePaths: ['modules/MMM-ImageSlideshow/exampleImages']
+		}
+	}*/,
+		{
+		module: 'MMM-PrayerTime',
+		header: 'Prayer Time',
+		position: 'center',	
+		config: {
+			apiVersion: '1.0', 
+			lat: '51.509865' , //-2°3256.13S saudi   '   pak   30°2321.84N pak -> 24°160.86N
+			lon: '-0.118092', // saudi                  pak   69°2111.59E pak ->  45°0628.26E
+			timezone: false,
+			timeFormat: 24,
+			method: 2,
+			playAdzan: ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'],
+			notDisplayed: ['midnight', 'sunset'],
+			useUpdateInterval: true,
+			updateInterval: 86400 * 1000, 
+			animationSpeed: 2.5 * 1000, 
+			language: 'en',
+			showAdzanAlert: true,
+			showTomorrow: true,
+			vertical: true, 
+			alertTimer: 60000
+		}
+	},
+	{
+		module: 'MMM-RandomQuranAyah',
+		header: 'Ayah of the day',
+		position: 'bottom',	
+		config: {
+			apiVersion: '1.0', 
+			showArabic: true,
+			showTranslation: true,
+			surahArabicName:true,
+			translationLang:'ur.qadri',
+			updateInterval: 3600 * 1000, // milliseconds
+		}
+	},
+	{
+		module: 'MMM-ELMPrayerTime',
+		position: 'bottom_left',	
+		config: {
+			apiVersion: '1.0', 
+			timeFormat: 24,
+			notDisplayed: ['midnight', 'sunset'],
+			useUpdateInterval: true,
+			updateInterval: 86400 * 1000, // How often do you want to fetch new praying time? (milliseconds)
+			animationSpeed: 2.5 * 1000, // Speed of the update animation. (milliseconds)
+			alertTimer: 15000
+		}
+	},
+	{
+    module: 'MMM-Remote-Control',
+		position: 'bottom_left',
+    config: {
+        customCommand: {},  // Optional, See "Using Custom Commands" below
+        showModuleApiMenu: true, // Optional, Enable the Module Controls menu
+        secureEndpoints: true, // Optional, See API/README.md
+        // uncomment any of the lines below if you're gonna use it
+        // customMenu: "custom_menu.json", // Optional, See "Custom Menu Items" below
+        // apiKey: "", // Optional, See API/README.md for details
+        // classes: {} // Optional, See "Custom Classes" below
+    }
+},
+	/*{
+	module: 'MMM-MyPrayerTimes',
+	position: 'top_left',
+	header: 'My Prayer Times',
+	config: {
+      mptLat: '24°160.86N',				
+	  mptLon: '45°0628.26E',				
+	  mptMethod: 3,			
+	  mptOffset: "0,0,0,0,0,0,0,0,0",	// Time corrections for your location: Imsak, Fajr, Sunrise, Duhr, Asr, Sunset, Maghrib, Isha, Midnight
+	  showSunrise: true,			
+	  showSunset: true,			
+	  showMidnight: true,		
+	  showImsak: true,			
+	  show24Clock: true,		
+	  }
+},
+,
+	*/
+		/*{
+			module: "clock",
+			position: "top_left"
+		},
+		{
+			module: "calendar",
+			header: "US Holidays",
+			position: "top_left",
+			config: {
+				calendars: [
+					{
+						fetchInterval: 7 * 24 * 60 * 60 * 1000,
+						symbol: "calendar-check",
+						url: "https://ics.calendarlabs.com/76/mm3137/US_Holidays.ics"
+					}
+				]
+			}
+		},
+		{
+			module: "compliments",
+			position: "lower_third"
+		},
+		{
+			module: "weather",
+			position: "top_right",
+			config: {
+				weatherProvider: "openweathermap",
+				type: "current",
+				location: "New York",
+				locationID: "5128581", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
+				apiKey: "YOUR_OPENWEATHER_API_KEY"
+			}
+		},
+		{
+			module: "weather",
+			position: "top_right",
+			header: "Weather Forecast",
+			config: {
+				weatherProvider: "openweathermap",
+				type: "forecast",
+				location: "New York",
+				locationID: "5128581", //ID from http://bulk.openweathermap.org/sample/city.list.json.gz; unzip the gz file and find your city
+				apiKey: "YOUR_OPENWEATHER_API_KEY"
+			}
+		},*/
+		/*{
+			module: "newsfeed",
+			position: "bottom_bar",
+			config: {
+				feeds: [
+					{
+						title: "New York Times",
+						url: "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
+					}
+				],
+				showSourceTitle: true,
+				showPublishDate: true,
+				broadcastNewsFeeds: true,
+				broadcastNewsUpdates: true
+			}
+		},*/
+	]
+};
+
+/*************** DO NOT EDIT THE LINE BELOW ***************/
+if (typeof module !== "undefined") {module.exports = config;}
