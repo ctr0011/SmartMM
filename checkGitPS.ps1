@@ -12,3 +12,6 @@ elif [ $REMOTE = $BASE ]; then
 else
     echo "Diverged"
 fi
+
+
+# test commentts
