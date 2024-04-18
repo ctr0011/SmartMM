@@ -1,0 +1,11 @@
+.MMM-ELMPrayerTime table {
+  width: 200px;
+}
+
+.MMM-ELMPrayerTime td {
+  width: 80px !important;
+}
+
+.MMM-ELMPrayerTime .occasion-name {
+  text-align: left;
+}

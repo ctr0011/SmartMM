@@ -1,0 +1,21 @@
+{
+	"FAJR": "Subuh",
+	"SUNRISE": "Terbit",
+	"DHUHR": "Dhuhur",
+	"ASR": "Ashar",
+	"SUNSET": "Terbenam",
+	"MAGHRIB": "Maghrib",
+	"ISHA": "Isya'",
+	"IMSAK": "Imsak",
+	"MIDNIGHT": "Tengah Malam",
+
+	"ADZAN": "ADZAN",
+	"ALERT_ADZAN_MSG": "Mari kita sholat %OCCASION!",
+	"ALERT_IMSAK_MSG": "PERHATIAN! Sudah %OCCASION lho!",
+
+	"TODAY": "Hari Ini",
+	"TOMORROW": "Besok",
+
+	"TXT_PRAYERTIME": "WAKTU SHOLAT",
+	"TXT_PRAYERTIME_DESC": "menampilkan waktu sholat hari ini dan esok hari"
+}

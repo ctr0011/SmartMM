@@ -1,0 +1,16 @@
+html {
+	cursor : auto;
+}
+img.desaturate {
+	-webkit-filter: grayscale(1);
+	-webkit-filter: grayscale(100%);
+	filter: gray;
+	filter: grayscale(100%);
+}
+span.carousel-dot{
+	width : 10px;
+	height : 10 px;
+	border-radius : 50%;
+	background-color : grey;
+	cursor : pointer;
+}
