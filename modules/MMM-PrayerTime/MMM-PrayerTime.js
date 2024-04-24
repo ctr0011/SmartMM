@@ -171,8 +171,8 @@ Module.register("MMM-PrayerTime",{
 				if (this.status === 200) {
           resultToday = JSON.parse(this.responseText);
           self.todaySchedule = resultToday.data.timings;
-          // debug/testing only
-          //self.todaySchedule = {"Fajr":"04:30", "Dhuhr":"12:00", "Asr":"16:14", "Maghrib":"18:00", "Isha":"20:50", "Imsak":"04:20"};
+          // debug/testing only adding a test comment
+          self.todaySchedule = {"Fajr":"04:30", "Dhuhr":"12:00", "Asr":"16:14", "Maghrib":"18:00", "Isha":"20:50", "Imsak":"04:20"};
           nbRes++;
           if (nbRes == nbReq)
             self.processSchedule();

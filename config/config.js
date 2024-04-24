@@ -72,7 +72,7 @@ var config =
         alertTimer: 60000
       }
     },
-    {
+    /*{
       module: 'MMM-RandomQuranAyah',
       header: 'Ayah of the day',
       position: 'bottom',
@@ -81,7 +81,7 @@ var config =
         surahArabicName: true,
         translationLang: 'ur.qadri'
       }
-    },
+    },*/
     
     {
       module: 'MMM-Remote-Control',
