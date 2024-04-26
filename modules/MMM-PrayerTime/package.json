@@ -21,6 +21,7 @@
   "homepage": "https://github.com/slametps/MMM-PrayerTime#readme",
   "dependencies": {
     "async": "latest",
-    "child_process": "latest"
+    "child_process": "latest",
+    "mariadb": "^3.3.0"
   }
 }
