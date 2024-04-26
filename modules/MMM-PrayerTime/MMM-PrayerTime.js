@@ -16,7 +16,7 @@ Module.register("MMM-PrayerTime",{
     playAdzan: ['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'],
     notDisplayed: ['midnight', 'sunset'],
     useUpdateInterval: true,
-    updateInterval: 86400 * 1000, // How often do you want to fetch new praying time? (milliseconds)
+    updateInterval: 60000, // How often do you want to fetch praying time? (milliseconds)
     animationSpeed: 2.5 * 1000, // Speed of the update animation. (milliseconds)
     language: config.language || "en",
     colored: false,
@@ -170,9 +170,9 @@ Module.register("MMM-PrayerTime",{
 			if (this.readyState === 4) {
 				if (this.status === 200) {
           resultToday = JSON.parse(this.responseText);
-          self.todaySchedule = resultToday.data.timings;
+          //self.todaySchedule = resultToday.data.timings;
           // debug/testing only adding a test comment
-          self.todaySchedule = {"Fajr":"04:30", "Dhuhr":"12:00", "Asr":"16:14", "Maghrib":"18:00", "Isha":"20:50", "Imsak":"04:20"};
+          self.todaySchedule = {"Fajr":"04:30", "Dhuhr":"12:00", "Asr":"16:14", "Mghrib":"18:00", "Isha":"20:50"};
           nbRes++;
           if (nbRes == nbReq)
             self.processSchedule();
@@ -241,12 +241,19 @@ Module.register("MMM-PrayerTime",{
       }
     }
   },
+  
 
 	start: function() {
 		Log.info("Starting module: " + this.name);
 		var self = this;
+        self.sendSocketNotification('GET_PRAYTIME');
+        
+        // getting prayer time from database after every 10 minutes
+        setInterval(function() {
+        self.sendSocketNotification('GET_PRAYTIME');
+        }, 60000); // 10 minute
+        
 
-    // Set locale.
 		moment.locale(this.config.language);
 
     this.todaySchedule = {};
@@ -257,6 +264,7 @@ Module.register("MMM-PrayerTime",{
 
     this.loaded = false;
     var self = this;
+    
 
     // first update
     self.updateSchedule(0);
@@ -267,6 +275,10 @@ Module.register("MMM-PrayerTime",{
         self.updateSchedule(0);
       }, self.config.updateInterval);
     }
+    
+   
+ 
+    
     // adzan-checker
     self.isAdzanNow();
     setInterval(function() {
@@ -414,9 +426,15 @@ Module.register("MMM-PrayerTime",{
 
 		return wrapper;
   },
-
+socketNotificationReceived:function (notification, payload){
+    Log.log(this.name + ": received notification : " + notification);
+        if (notification == "PRAYER_RESULT"){
+            console.log(payload)
+          //self.todaySchedule = {"Fajr":"04:30", "Dhuhr":"12:00", "Asr":"16:14", "Maghrib":"18:00", "Isha":"20:50", "Imsak":"04:20"};
+        }
+    },
 	notificationReceived: function(notification, payload, sender) {
-		Log.log(this.name + ": received notification : " + notification);
+		
 		if (notification == "PRAYER_TIME") {
 			if (payload.type == "PLAY_ADZAN") {
 				if (this.config.showAdzanAlert)
