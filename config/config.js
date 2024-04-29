@@ -29,6 +29,10 @@ var config =
       randomizeImageOrder: true
     }
   },
+  {
+    module: "MMM-UpdateChecker",
+    position: "top_right",
+  },
     /*{
 		module: 'MMM-ImageSlideshow',
 		position: 'bottom_right',
