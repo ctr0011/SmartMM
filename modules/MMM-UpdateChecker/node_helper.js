@@ -41,7 +41,7 @@ module.exports = NodeHelper.create({
 
                     // Log the fetch summary
                     Log.log('Fetch summary:', fetchSummary);
-                    Log.log('Fetch summary Parsed:', JSON.stringify(fetchSummary));
+                    Log.log('Fetch summary Parsed:', fetchSummary);
 
                     git.branch((err, branchSummary) => {
                         if (err) {
@@ -56,9 +56,9 @@ module.exports = NodeHelper.create({
                         // Check if the branch has a `ahead` property, indicating that it's ahead of its remote counterpart
                         if (branchInfo && branchInfo.label.includes('behind')) {
                             Log.log(`Branch '${branchName}' is ahead by ${branchInfo.ahead} commit(s). UPDATE PLS ` + branchInfo.label.includes('behind'));
-                            res = "Please Update MagicMirror from remote."
+                            res = "Please Update MagicMirror from remote module."
                         } else {
-                            res = "MagicMirror already up to date.";
+                            res = "MagicMirror is already up to date.";
                             Log.log(`Branch '${branchName}' is not ahead of its remote counterpart.`);
                         }
                         this.sendSocketNotification("I_DID", res)
