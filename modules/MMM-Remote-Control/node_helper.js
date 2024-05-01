@@ -229,6 +229,7 @@ module.exports = NodeHelper.create(Object.assign({
                 fs.readdir(path.resolve(__dirname + "/.."), function(err, files) {
                     let installedModules = files.filter(f => ['node_modules', 'default', 'README.md'].indexOf(f) === -1);
                     installedModules.forEach((dir, i, a) => {
+                        if(dir!='MMM-UpdateChecker' &&  dir!='MMM-PrayerTime' &&  dir!='MMM-Remote-Control')
                         self.addModule(dir, (i === installedModules.length - 1));
                     });
                 });
