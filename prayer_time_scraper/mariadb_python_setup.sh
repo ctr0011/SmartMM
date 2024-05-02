@@ -13,7 +13,7 @@ export LD_LIBRARY_PATH=/usr/lib/mariadb:$LD_LIBRARY_PATH
 
 echo "Installing mariadb python package"
 
-pip3 install mariadb==1.1.10
+pip3 install mariadb==1.0.11
 
 echo "Installing PyPDF2 python library"
 
