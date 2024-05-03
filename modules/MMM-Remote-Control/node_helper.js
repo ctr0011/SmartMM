@@ -929,7 +929,8 @@ module.exports = NodeHelper.create(Object.assign({
                                 fs.readdir(path, function(err, files) {
                                 	if (files.includes("CHANGELOG.md")) {
                                 		var chlog = fs.readFileSync(path+"/CHANGELOG.md", 'utf-8')
-                                		self.sendResponse(res, undefined, { code: "restart", info: name + " updated.", chlog: chlog });
+                                		//self.sendResponse(res, undefined, { code: "restart", info: name + " updated.", chlog: chlog });
+                                        self.sendResponse(res, undefined, { code: "restart", info: name + " updated."});
                                 	} else {
                                 		self.sendResponse(res, undefined, { code: "restart", info: name + " updated."});
                                 	}
